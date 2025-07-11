@@ -84,6 +84,7 @@ class AccountServices
                             ->where('otp', $data['otp'])
                             ->where('remarks', 'registration')
                             ->first();
+                            
         if($otpVerification)
         {
             $otpVerification->delete();

@@ -3,6 +3,7 @@
 @section('title', 'Color Run Registration')
 
 @section('content')
+@include('components.alert')
 <div class="w-full min-h-screen bg-cover bg-center flex flex-col items-center justify-center px-4">
     <div class="mb-3">
         <img src="{{ asset('images/city_logo.webp') }}" alt="Color Run Logo" class="h-20 sm:h-24 object-contain">
@@ -15,7 +16,7 @@
             Create your account to participate in the Taguig Color Run. Stay updated and manage your event info online.
         </p>
 
-        <form action="#" method="POST" class="space-y-4">
+        <form action="{{ route('register.store') }}" method="POST" class="space-y-4">
             @csrf
             <div>
                 <label class="block mb-1 text-xs font-medium text-gray-700">Full Name</label>
@@ -103,7 +104,7 @@
         </form>
         <p class="text-xs sm:text-sm text-center text-gray-600 mt-5">
             Already registered?
-            <a href="#" class="text-blue-600 hover:underline font-medium">Sign In</a>
+            <a href="{{ route('login.index') }}" class="text-blue-600 hover:underline font-medium">Sign In</a>
         </p>
     </div>
 </div>

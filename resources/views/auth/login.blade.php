@@ -3,6 +3,7 @@
 @section('title', 'Login')
 
 @section('content')
+@include('components.alert')
 <div class="w-full min-h-screen bg-cover bg-center flex flex-col items-center justify-center px-4">
     <div class="mb-3">
         <img src="{{ asset('images/city_logo.webp') }}" alt="City Logo" class="h-20 sm:h-24 object-contain">
@@ -12,7 +13,7 @@
         <p class="text-xs sm:text-sm text-center text-gray-600 mb-5">
             Sign in to your Color Run account to view your registration, event details, or update your info.
         </p>
-        <form method="POST" action="#" class="space-y-4">
+        <form method="POST" action="{{ route('login.store') }}" class="space-y-4">
             @csrf
             <div>
                 <label class="block mb-1 text-xs font-medium text-gray-700">Email</label>
@@ -61,7 +62,7 @@
         </form>
         <p class="text-xs sm:text-sm text-center text-gray-600 mt-5">
             Don't have an account?
-            <a href="#" class="text-blue-600 hover:underline font-medium">Register</a>
+            <a href="{{ route('register.index') }}" class="text-blue-600 hover:underline font-medium">Register</a>
         </p>
     </div>
 </div>
