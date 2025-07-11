@@ -102,6 +102,10 @@ class AccountController extends Controller
 
     public function logout()
     {
+        $this->accountServices->logout();
 
+        return redirect()
+            ->route('login.index')
+            ->with('success', 'Logged out successfully!');
     }
 }
