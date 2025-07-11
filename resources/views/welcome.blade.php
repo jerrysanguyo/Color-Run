@@ -49,7 +49,7 @@
                     </p>
                 </div>
                 <div class="mt-5 text-center">
-                    <a href="#"
+                    <a href="{{ route('participants.index') }}"
                         class="inline-block bg-blue-600 hover:bg-blue-700 text-white text-sm font-semibold px-6 py-2 rounded-md shadow transition duration-300">
                         Register for this Event
                     </a>

@@ -2,12 +2,16 @@
 
 use App\Http\Controllers\Auth\AccountController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\ParticipantController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('welcome');
-});
+})->name('welcome');
 
+Route::resource('participants', ParticipantController::class);
+Route::get('/participant/generate-qr', [ParticipantController::class, 'generateIndex'])->name('generateQr.index');
+Route::post('/participant/generate-qr/check', [ParticipantController::class, 'generateQr'])->name('generateQr.check');
 Route::get('/login', [AccountController::class, 'loginIndex'])->name('login.index');
 Route::post('/login/authentication', [AccountController::class, 'loginAuthenticate'])->name('login.store');
 Route::get('/registration', [AccountController::class, 'registerIndex'])->name('register.index');
