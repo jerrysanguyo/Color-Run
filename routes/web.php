@@ -1,18 +1,15 @@
 <?php
 
+use App\Http\Controllers\Auth\AccountController;
 use Illuminate\Support\Facades\Route;
-
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider and all of them will
-| be assigned to the "web" middleware group. Make something great!
-|
-*/
 
 Route::get('/', function () {
     return view('auth.login');
 });
+
+Route::get('/login', [AccountController::class, 'login'])->name('login.index');
+Route::post('/login/authentication', [AccountController::class, 'loginAuthenticate'])->name('login.store');
+Route::get('/registration', [AccountController::class, 'registerIndex'])->name('register.index');
+Route::post('/registration/store', [AccountController::class, 'register'])->name('register.store');
+Route::get('/account/confirmation', [AccountController::class, 'confirmationIndex'])->name('confirmation.index');
+Route::post('/account/confirmation', [AccountController::class, 'confirm'])->name('confimation.store');
