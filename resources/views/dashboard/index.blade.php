@@ -5,7 +5,7 @@
 @section('content')
 @include('components.alert')
 
-<div class="max-w-7xl mx-auto mb-10 px-4">
+<div class="max-w-7xl mx-auto mb-10 px-4 pt-16">
     <div class="bg-white shadow-lg rounded-xl p-6 sm:p-8 border-l-4 border-blue-600 relative">
         <div class="text-center">
             <h1 class="text-2xl sm:text-3xl font-extrabold text-gray-800 mb-2 uppercase">
@@ -27,7 +27,6 @@
                 inclusive and empowering for all.
             </p>
         </div>
-
         <div class="flex justify-center px-4">
             <div class="max-w-lg bg-gray-50 rounded-md p-4 mb-5 border border-gray-200 lg:text-left text-center w-full">
                 <p class="font-semibold text-blue-700 mb-1">📍 Location:</p>
@@ -39,10 +38,16 @@
                 </p>
                 <p class="font-semibold text-blue-700 mt-3 mb-1">📅 Date:</p>
                 <p class="text-gray-800 text-sm">August 3, 2025 (Sunday)</p>
-
                 <p class="font-semibold text-blue-700 mt-3 mb-1">⏰ Time:</p>
                 <p class="text-gray-800 text-sm">5:00 AM</p>
-
+                <div class="mt-5 text-sm text-gray-700 bg-yellow-50 border border-yellow-200 rounded-md p-3">
+                    <p>
+                        Kindly note that all participants must present their unique QR code at the entrance to gain
+                        access to the event area.
+                        To obtain your QR code, please complete your registration using the button below. Thank you for
+                        your cooperation.
+                    </p>
+                </div>
                 <div class="mt-5 text-center">
                     <a href="#"
                         class="inline-block bg-blue-600 hover:bg-blue-700 text-white text-sm font-semibold px-6 py-2 rounded-md shadow transition duration-300">
@@ -51,8 +56,6 @@
                 </div>
             </div>
         </div>
-
-
         <div class="mb-4">
             <h3 class="font-bold text-green-700 mb-2">✅ REQUIREMENTS:</h3>
             <ul class="list-disc list-inside text-gray-700 text-sm space-y-1">
@@ -62,7 +65,6 @@
                     heart conditions, asthma, etc.) <span class="italic text-gray-500">OPTIONAL</span></li>
             </ul>
         </div>
-
         <div class="mb-4">
             <h3 class="font-bold text-pink-600 mb-2">📌 MGA PAALALA:</h3>
             <ul class="list-decimal list-inside text-gray-700 text-sm space-y-1">
@@ -77,7 +79,6 @@
                 </li>
             </ul>
         </div>
-
         <p class="mt-6 text-center text-pink-600 font-semibold text-sm sm:text-base">
             🎉 Let’s celebrate together and have fun! 🎉
         </p>

@@ -13,6 +13,7 @@
 
 <body class="bg-cover bg-center bg-no-repeat min-h-screen"
     style="background-image: url('{{ asset('images/cover.webp') }}');">
+    @auth
     <header class="bg-white/90 backdrop-blur-sm border-b border-gray-200 fixed top-0 left-0 w-full z-50"
         x-data="{ mobileMenuOpen: false, userMenuOpen: false }">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -21,13 +22,11 @@
                     <img src="{{ asset('images/city_logo.webp') }}" class="h-8 w-8 object-contain" alt="Logo">
                     <span class="text-lg font-semibold text-gray-800">Color Run</span>
                 </a>
-                
                 <div class="hidden sm:flex flex-grow justify-center space-x-6 text-sm font-medium text-gray-700">
                     <a href="#" class="hover:text-blue-600 transition">Home</a>
                     <a href="#" class="hover:text-blue-600 transition">Register</a>
                     <a href="#" class="hover:text-blue-600 transition">Login</a>
                 </div>
-                
                 <div class="hidden sm:block">
                     <div class="relative" x-data="{ open: false }">
                         <button @click="open = !open"
@@ -53,7 +52,6 @@
                         </div>
                     </div>
                 </div>
-                
                 <div class="sm:hidden">
                     <button @click="mobileMenuOpen = !mobileMenuOpen"
                         class="text-gray-700 hover:text-blue-600 focus:outline-none transition-all duration-300">
@@ -66,7 +64,6 @@
                     </button>
                 </div>
             </div>
-            
             <div x-show="mobileMenuOpen" x-transition:enter="transition ease-out duration-300"
                 x-transition:enter-start="opacity-0 -translate-y-2" x-transition:enter-end="opacity-100 translate-y-0"
                 x-transition:leave="transition ease-in duration-200"
@@ -86,8 +83,9 @@
             </div>
         </div>
     </header>
+    @endauth
 
-    <main class="flex items-center justify-center min-h-screen pt-20 px-4">
+    <main class="flex items-center justify-center min-h-screen pt-5 px-4">
         @yield('content')
     </main>
 
