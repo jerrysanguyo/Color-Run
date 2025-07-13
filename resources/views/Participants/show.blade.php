@@ -21,16 +21,18 @@
             </div>
             <div class="text-center text-gray-700 text-sm space-y-1">
                 <p><span class="font-semibold">👤 Full Name:</span> {{ $participant->name }}</p>
-                <p><span class="font-semibold">🎂 Age:</span> {{ $participant->age }}</p>
-                <p><span class="font-semibold">🚻 Sex:</span> {{ $participant->sex }}</p>
-                <p><span class="font-semibold">📧 Email:</span> {{ $participant->email }}</p>
-                <p><span class="font-semibold">📱 Phone:</span> {{ $participant->phone }}</p>
-                <p><span class="font-semibold">👕 Shirt Size:</span> {{ $participant->shirt_size }}</p>
+                <p><span class="font-semibold">📅 Registered On:</span> {{ $participant->created_at->format('F d, Y') }}
+                </p>
             </div>
         </div>
-        <div class="bg-white border-t px-6 py-4 text-center text-xs text-gray-500">
-            Please present this ticket with your QR code at the entrance for verification. This serves as your official
-            event pass.
+        <div class="bg-white border-t px-6 py-4 text-center text-xs text-gray-500 space-y-2">
+            <p>Please present this ticket with your QR code at the entrance for verification. This serves as your
+                official event pass.</p>
+
+            <a href="{{ route('welcome') }}"
+                class="inline-block mt-1 text-blue-600 font-semibold hover:underline transition">
+                👉 View Full Event Details
+            </a>
         </div>
     </div>
 </div>

@@ -2,6 +2,8 @@
 
 namespace App\Services;
 
+use App\Jobs\EventRegisterEmail;
+use App\Jobs\QrCodeGeneration;
 use App\Models\Participant;
 use App\Models\ParticipantQr;
 use SimpleSoftwareIO\QrCode\Facades\QrCode;
@@ -21,23 +23,8 @@ class ParticipantServices
         ]);
 
         if ($participant) {
-            $directory = public_path('qrCode');
-            $fileName = 'qr_' . $participant->id . '_' . $participant->name . '.png';
-            $filePath = $directory . '/' . $fileName;
-            
-            if (!File::exists($directory)) {
-                File::makeDirectory($directory, 0755, true);
-            }
-            
-            $qrContent = $participant->id;
-            $qrImage = QrCode::format('png')->size(200)->generate($qrContent);
-            
-            file_put_contents($filePath, $qrImage);
-            
-            ParticipantQr::create([
-                'participant_id' => $participant->id,
-                'qr_code' => 'qrCode/' . $fileName,
-            ]);
+            QrCodeGeneration::dispatch($participant);
+            EventRegisterEmail::dispatch($participant);
         }
 
         return $participant;
