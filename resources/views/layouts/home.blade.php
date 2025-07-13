@@ -23,9 +23,8 @@
                     <span class="text-lg font-semibold text-gray-800">Color Run</span>
                 </a>
                 <div class="hidden sm:flex flex-grow justify-center space-x-6 text-sm font-medium text-gray-700">
-                    <a href="#" class="hover:text-blue-600 transition">Home</a>
-                    <a href="#" class="hover:text-blue-600 transition">Register</a>
-                    <a href="#" class="hover:text-blue-600 transition">Login</a>
+                    <a href="{{ route(Auth::user()->getRoleNames()->first() . '.dashboard') }}" class="hover:text-blue-600 transition">Home</a>
+                    <a href="#" class="hover:text-blue-600 transition">Verify Qr</a>
                 </div>
                 <div class="hidden sm:block">
                     <div class="relative" x-data="{ open: false }">
@@ -71,8 +70,6 @@
                 class="sm:hidden mt-2 pb-4 space-y-2">
 
                 <a href="#" class="block px-2 py-1 text-sm text-gray-700 hover:text-blue-600">Home</a>
-                <a href="#" class="block px-2 py-1 text-sm text-gray-700 hover:text-blue-600">Register</a>
-                <a href="#" class="block px-2 py-1 text-sm text-gray-700 hover:text-blue-600">Login</a>
                 <a href="#" class="block px-2 py-1 text-sm text-gray-700 hover:text-blue-600">Update Profile</a>
                 <form method="POST" action="#">
                     @csrf

@@ -10,6 +10,7 @@ Route::get('/', function () {
 })->name('welcome');
 
 Route::resource('participants', ParticipantController::class);
+Route::get('/participant/search', [HomeController::class, 'search'])->name('participant.search');
 Route::get('/participant/generate-qr', [ParticipantController::class, 'generateIndex'])->name('generateQr.index');
 Route::post('/participant/generate-qr/check', [ParticipantController::class, 'generateQr'])->name('generateQr.check');
 Route::get('/login', [AccountController::class, 'loginIndex'])->name('login.index');
