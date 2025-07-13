@@ -17,8 +17,10 @@ class HomeController extends Controller
             ->orderBy('created_at', 'desc')
             ->paginate(10)
             ->appends(['search' => $search]);
+        
+        $total = Participant::count();
 
-        return view('dashboard.index', compact('participants', 'search'));
+        return view('dashboard.index', compact('participants', 'search', 'total'));
     }
 
     public function search(Request $request)
@@ -31,6 +33,8 @@ class HomeController extends Controller
             ->orderBy('created_at', 'desc')
             ->paginate(10);
 
-        return view('dashboard.partials.participants-table', compact('participants'))->render();
+        return response()->json([
+            'table' => view('dashboard.partials.participants-table', compact('participants'))->render(),
+        ]);
     }
 }

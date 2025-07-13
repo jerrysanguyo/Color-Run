@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests;
 
+use App\Models\Participant;
 use Illuminate\Foundation\Http\FormRequest;
 
 class ParticipantRequest extends FormRequest
@@ -21,5 +22,14 @@ class ParticipantRequest extends FormRequest
             'phone'         => 'required|string|unique:participants,phone|max:11',
             'shirt_size'    => 'required|in:XS,S,M,L,XL,XXL',
         ];
+    }
+
+    public function withValidator($validator): void
+    {
+        $validator->after(function ($validator) {
+            if (Participant::count() >= 700) {
+                $validator->errors()->add('name', 'Registration is closed. Maximum number of participants reached.');
+            }
+        });
     }
 }

@@ -3,10 +3,12 @@
 use App\Http\Controllers\Auth\AccountController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ParticipantController;
+use App\Models\Participant;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
-    return view('welcome');
+    $total = Participant::count();
+    return view('welcome', compact('total'));
 })->name('welcome');
 
 Route::resource('participants', ParticipantController::class);

@@ -48,12 +48,25 @@
                         your cooperation.
                     </p>
                 </div>
+                @if ($total === 700)
+                <div class="mt-2 text-center">
+                    <p
+                        class="text-red-600 font-semibold text-sm bg-red-100 border border-red-200 px-4 py-3 rounded-md inline-block">
+                        Registration for this event is now closed. We have reached the maximum number of
+                        participants.<br>
+                        If you wish to generate your existing QR code, please click
+                        <a href="{{ route('generateQr.index') }}"
+                            class="text-blue-600 underline hover:text-blue-800">here</a>.
+                    </p>
+                </div>
+                @else
                 <div class="mt-5 text-center">
                     <a href="{{ route('participants.index') }}"
                         class="inline-block bg-blue-600 hover:bg-blue-700 text-white text-sm font-semibold px-6 py-2 rounded-md shadow transition duration-300">
                         Register for this Event
                     </a>
                 </div>
+                @endif
             </div>
         </div>
         <div class="mb-4">

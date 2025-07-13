@@ -5,7 +5,7 @@
 @section('content')
 <div class="max-w-7xl mx-auto px-4 py-10">
     <h1 class="text-2xl sm:text-3xl font-extrabold text-center text-blue-700 mb-8">
-        🎽 Registered Participants
+        🎽 {{ $total }} Registered Participants 
     </h1>
     <div class="max-w-md mx-auto mb-6 relative">
         <input type="text" name="search" placeholder="Search by name..." value="{{ $search }}"
@@ -50,9 +50,9 @@ searchInput.addEventListener('input', function() {
     clearTimeout(timeout);
     timeout = setTimeout(() => {
         fetch(`${searchUrl}?search=${encodeURIComponent(this.value)}`)
-            .then(response => response.text())
+            .then(response => response.json())
             .then(data => {
-                tbody.innerHTML = data;
+                tbody.innerHTML = data.table;
             })
             .catch(err => console.error('Search error:', err));
     }, 300);
