@@ -30,6 +30,8 @@ Route::middleware(['auth'])
             ->group(function () {
                 Route::post('/logout', [AccountController::class, 'logout'])->name('logout');
                 Route::get('/dashboard', [HomeController::class, 'index'])->name('dashboard');
+                Route::get('/participants/verify', [ParticipantController::class, 'verifyQrIndex'])->name('verifyQr.index');
+                Route::post('/participants/qr/verification', [ParticipantController::class, 'verifyQr'])->name('pariticipant.verify');
             });
         
         Route::middleware('role:admin')
@@ -38,6 +40,8 @@ Route::middleware(['auth'])
             ->group(function () {
                 Route::post('/logout', [AccountController::class, 'logout'])->name('logout');
                 Route::get('/dashboard', [HomeController::class, 'index'])->name('dashboard');
+                Route::get('/participants/verify', [ParticipantController::class, 'verifyQrIndex'])->name('verifyQr.index');
+                Route::post('/participants/qr/verification', [ParticipantController::class, 'verifyQr'])->name('pariticipant.verify');
             });
         
         Route::middleware('role:user')
@@ -46,5 +50,7 @@ Route::middleware(['auth'])
             ->group(function () {
                 Route::post('/logout', [AccountController::class, 'logout'])->name('logout');
                 Route::get('/dashboard', [HomeController::class, 'index'])->name('dashboard');
+                Route::get('/participants/verify', [ParticipantController::class, 'verifyQrIndex'])->name('verifyQr.index');
+                Route::post('/participants/qr/verification', [ParticipantController::class, 'verifyQr'])->name('pariticipant.verify');
             });
     });

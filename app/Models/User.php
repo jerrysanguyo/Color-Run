@@ -35,4 +35,9 @@ class User extends Authenticatable
     {
         return $this->hasMany(Otp::class, 'user_id');
     }
+
+    public function scannedBy()
+    {
+        return $this->hasMany(ParticipantClockIn::class, 'scanned_by');
+    }
 }

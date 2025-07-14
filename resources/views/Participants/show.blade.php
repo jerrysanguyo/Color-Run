@@ -3,6 +3,7 @@
 @section('title', 'Your Ticket')
 
 @section('content')
+@include('components.alert')
 <div class="w-full min-h-screen flex flex-col items-center justify-center px-4 pt-10">
     <div class="mb-4">
         <img src="{{ asset('images/city_logo.webp') }}" alt="City of Taguig Logo" class="h-20 sm:h-24 object-contain">
@@ -21,18 +22,33 @@
             </div>
             <div class="text-center text-gray-700 text-sm space-y-1">
                 <p><span class="font-semibold">👤 Full Name:</span> {{ $participant->name }}</p>
-                <p><span class="font-semibold">📅 Registered On:</span> {{ $participant->created_at->format('F d, Y') }}
+                <p><span class="font-semibold">📝 Registered On:</span> {{ $participant->created_at->format('F d, Y') }}
                 </p>
+                @auth
+                <p><span class="font-semibold">⏱️ Time In:</span>
+                    {{ optional($participant->clockIn)->created_at?->format('F d, Y - h:i A') ?? 'N/A' }}
+                </p>
+                <p><span class="font-semibold">🧑‍💻 Scanned By:</span>
+                    {{ optional($participant->clockIn?->scannedBy)->name ?? 'N/A' }}
+                </p>
+                @endauth
             </div>
         </div>
+
         <div class="bg-white border-t px-6 py-4 text-center text-xs text-gray-500 space-y-2">
             <p>Please present this ticket with your QR code at the entrance for verification. This serves as your
                 official event pass.</p>
-
+            @auth
+            <a href="{{ route(Auth::user()->getRoleNames()->first() . '.verifyQr.index') }}"
+                class="inline-block mt-1 text-blue-600 font-semibold hover:underline transition">
+                👉 Go to QR Verification
+            </a>
+            @else
             <a href="{{ route('welcome') }}"
                 class="inline-block mt-1 text-blue-600 font-semibold hover:underline transition">
                 👉 View Full Event Details
             </a>
+            @endauth
         </div>
     </div>
 </div>

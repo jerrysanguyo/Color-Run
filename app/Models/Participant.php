@@ -22,4 +22,9 @@ class Participant extends Model
     {
         return $this->hasOne(ParticipantQr::class, 'participant_id');
     }
+
+    public function clockIn()
+    {
+        return $this->hasOne(ParticipantClockIn::class, 'participant_id');
+    }
 }

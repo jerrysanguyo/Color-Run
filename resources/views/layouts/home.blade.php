@@ -28,7 +28,7 @@
                     @role('superadmin')
                     <a href="#" class="hover:text-blue-600 transition">List of accounts</a>
                     @endrole
-                    <a href="#" class="hover:text-blue-600 transition">Verify Qr</a>
+                    <a href="{{ route(Auth::user()->getRoleNames()->first() . '.verifyQr.index') }}" class="hover:text-blue-600 transition">Verify Qr</a>
                 </div>
                 <div class="hidden sm:block">
                     <div class="relative" x-data="{ open: false }">
