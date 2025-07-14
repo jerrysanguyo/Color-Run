@@ -1,6 +1,6 @@
 @extends('layouts.auth.login')
 
-@section('title', 'Color Run Registration')
+@section('title', 'Registration page')
 
 @section('content')
 @include('components.alert')

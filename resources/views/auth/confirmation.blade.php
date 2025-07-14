@@ -1,6 +1,6 @@
 @extends('layouts.auth.login')
 
-@section('title', 'Confirm OTP')
+@section('title', 'otp confirmation page')
 
 @section('content')
 @include('components.alert')

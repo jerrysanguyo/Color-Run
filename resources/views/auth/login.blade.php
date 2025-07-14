@@ -1,6 +1,6 @@
 @extends('layouts.auth.login')
 
-@section('title', 'Login')
+@section('title', 'Login page')
 
 @section('content')
 @include('components.alert')

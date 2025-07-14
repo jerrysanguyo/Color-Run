@@ -8,6 +8,7 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js" defer></script>
     <script src="https://kit.fontawesome.com/4f2d7302b1.js" crossorigin="anonymous"></script>
+    <link rel="icon" type="image/webp" href="{{ asset('images/city_logo.webp') }}">
     @stack('styles')
 </head>
 
@@ -24,6 +25,9 @@
                 </a>
                 <div class="hidden sm:flex flex-grow justify-center space-x-6 text-sm font-medium text-gray-700">
                     <a href="{{ route(Auth::user()->getRoleNames()->first() . '.dashboard') }}" class="hover:text-blue-600 transition">Home</a>
+                    @role('superadmin')
+                    <a href="#" class="hover:text-blue-600 transition">List of accounts</a>
+                    @endrole
                     <a href="#" class="hover:text-blue-600 transition">Verify Qr</a>
                 </div>
                 <div class="hidden sm:block">
