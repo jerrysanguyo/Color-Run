@@ -16,7 +16,7 @@
             Create your account to participate in the Taguig Color Run. Stay updated and manage your event info online.
         </p>
 
-        <form action="{{ route('register.store') }}" method="POST" class="space-y-4">
+        <form x-data="{ loading: false }" x-on:submit="loading = true" action="{{ route('register.store') }}" method="POST" class="space-y-4">
             @csrf
             <div>
                 <label class="block mb-1 text-xs font-medium text-gray-700">Full Name</label>
@@ -101,6 +101,7 @@
                 class="w-full py-2.5 bg-blue-600 text-white text-sm font-semibold rounded-md transition duration-200 hover:scale-[1.01] hover:bg-blue-700">
                 Register Now
             </button>
+            @include('components.loading')
         </form>
         <p class="text-xs sm:text-sm text-center text-gray-600 mt-5">
             Already registered?

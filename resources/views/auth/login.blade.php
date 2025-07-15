@@ -13,7 +13,8 @@
         <p class="text-xs sm:text-sm text-center text-gray-600 mb-5">
             Sign in to your Color Run account to view your registration, event details, or update your info.
         </p>
-        <form method="POST" action="{{ route('login.store') }}" class="space-y-4">
+        <form x-data="{ loading: false }" x-on:submit="loading = true" method="POST" action="{{ route('login.store') }}"
+            class="space-y-4">
             @csrf
             <div>
                 <label class="block mb-1 text-xs font-medium text-gray-700">Email</label>
@@ -59,6 +60,7 @@
                 class="w-full py-2.5 bg-blue-600 text-white text-sm font-semibold rounded-md transition duration-200 hover:scale-[1.01] hover:bg-blue-700">
                 Sign In
             </button>
+            @include('components.loading')
         </form>
         <p class="text-xs sm:text-sm text-center text-gray-600 mt-5">
             Don't have an account?

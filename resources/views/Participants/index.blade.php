@@ -17,8 +17,8 @@
             Fill out the form below to register for the Color Fun Run event.
         </p>
 
-        <form action="{{ route('participants.store') }}" method="POST" class="space-y-4">
-            @csrf
+        <form x-data="{ loading: false }" x-on:submit="loading = true" action="{{ route('participants.store') }}"
+            method="POST" class="space-y-4 relative"> @csrf
             <div>
                 <label class="block mb-1 text-xs font-medium text-gray-700">Full Name</label>
                 <input type="text" name="name" value="{{ old('name') }}"
@@ -85,10 +85,12 @@
                 class="w-full py-2.5 bg-blue-600 text-white text-sm font-semibold rounded-md transition duration-200 hover:scale-[1.01] hover:bg-blue-700">
                 Submit Registration
             </button>
+            @include('components.loading')
         </form>
         <p class="text-xs sm:text-sm text-center text-gray-600 mt-5">
             Already have a QR code?
-            <a href="{{ route('generateQr.index') }}" class="text-blue-600 hover:underline font-medium">Generate again</a>
+            <a href="{{ route('generateQr.index') }}" class="text-blue-600 hover:underline font-medium">Generate
+                again</a>
         </p>
     </div>
 </div>

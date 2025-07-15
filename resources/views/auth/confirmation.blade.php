@@ -13,7 +13,7 @@
         <p class="text-xs sm:text-sm text-center text-gray-600 mb-5">
             We've sent a one-time password (OTP) to your email. Please enter it below to verify your account.
         </p>
-        <form method="POST" action="{{ route('confimation.store', $user->id) }}" class="space-y-4">
+        <form x-data="{ loading: false }" x-on:submit="loading = true" method="POST" action="{{ route('confimation.store', $user->id) }}" class="space-y-4">
             @csrf
             <div>
                 <label class="block mb-1 text-xs font-medium text-gray-700">Enter OTP</label>
@@ -28,6 +28,7 @@
                 class="w-full py-2.5 bg-blue-600 text-white text-sm font-semibold rounded-md transition duration-200 hover:scale-[1.01] hover:bg-blue-700">
                 Confirm OTP
             </button>
+            @include('components.loading')
         </form>
         <p class="text-xs sm:text-sm text-center text-gray-600 mt-5">
             Didn't receive the code?

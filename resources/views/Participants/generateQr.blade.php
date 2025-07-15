@@ -12,7 +12,8 @@
         <p class="text-sm text-center text-gray-600 mb-6">
             Please provide your email address to continue.
         </p>
-        <form method="POST" action="{{ route('generateQr.check') }}" class="space-y-4">
+        <form x-data="{ loading: false }" x-on:submit="loading = true" method="POST"
+            action="{{ route('generateQr.check') }}" class="space-y-4">
             @csrf
             <div>
                 <label class="block mb-1 text-sm font-medium text-gray-700">Email Address</label>
@@ -29,6 +30,7 @@
                     Continue
                 </button>
             </div>
+            @include('components.loading')
         </form>
         <p class="text-xs sm:text-sm text-center text-gray-600 mt-5">
             <a href="{{ route('welcome') }}" class="text-blue-600 hover:underline font-medium">Back to Welcome</a>

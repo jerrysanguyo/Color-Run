@@ -13,7 +13,8 @@
         <p class="text-sm text-center text-gray-600 mb-6">
             Kindly enter your QR code to retrieve your registration ticket.
         </p>
-        <form method="POST" action="{{ route(Auth::user()->getRoleNames()->first() . '.pariticipant.verify') }}" class="space-y-4">
+        <form x-data="{ loading: false }" x-on:submit="loading = true" method="POST"
+            action="{{ route(Auth::user()->getRoleNames()->first() . '.pariticipant.verify') }}" class="space-y-4">
             @csrf
             <div>
                 <label class="block mb-1 text-sm font-medium text-gray-700">QR Code</label>
@@ -30,6 +31,7 @@
                     Continue
                 </button>
             </div>
+            @include('components.loading')
         </form>
     </div>
 </div>
