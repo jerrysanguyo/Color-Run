@@ -23,6 +23,32 @@ class AccountServices
         throw new AuthenticationException('Invalid login credentials.');
     }
 
+    public function storeAccount(array $data)
+    {
+        $register = User::updateOrcreate(
+            [
+                'email' => $data['email'],
+                'contact_number' => $data['contact'],
+            ],
+            [
+                'name' => $data['name'],
+                'password'=> bcrypt($data['password']),
+                'email_verified_at' => now(),
+            ]
+        );
+
+        if ($register) {
+            $register->assignRole('user');
+        }
+
+        return $register;
+    }
+
+    public function storeDestroy($account): void
+    {
+        $account->delete();
+    }
+
     public function register(array $data)
     {
         $register =  User::create([

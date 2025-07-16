@@ -31,6 +31,11 @@ class User extends Authenticatable
         'password' => 'hashed',
     ];
 
+    public static function getAllUser()
+    {
+        return self::select('id', 'name', 'email', 'contact_number')->get();
+    }
+
     public function otps()
     {
         return $this->hasMany(Otp::class, 'user_id');

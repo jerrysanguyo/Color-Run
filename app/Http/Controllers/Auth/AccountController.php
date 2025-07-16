@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers\Auth;
 
+use App\DataTables\CmsDataTable;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\AccountRequest;
 use App\Http\Requests\Auth\LoginRequest;
 use App\Http\Requests\Auth\RegisterRequest;
 use App\Http\Requests\OtpRequest;
@@ -20,9 +22,37 @@ class AccountController extends Controller
         $this->accountServices = $accountServices;
     }
 
-    public function index()
+    public function index(CmsDataTable $dataTable)
     {
-        //
+        $resource = 'account';
+        $page_title = 'List of Account';
+        $columns = ['ID', 'NAME', 'ACTION'];
+        $data = User::getAllUser();
+        return $dataTable
+            ->render('account.index', compact(
+                'data',
+                'resource',
+                'page_title',
+                'columns'
+            ));
+    }
+
+    public function store(AccountRequest $request)
+    {
+        $register = $this->accountServices->storeAccount($request->validated());
+
+        return redirect()
+            ->route(Auth::user()->getRoleNames()->first() . '.account.index')
+            ->with('success', 'You have successfully an account for' . $register->name);
+    }
+
+    public function destroy(User $account)
+    {
+        $this->accountServices->storeDestroy($account);
+
+        return redirect()
+            ->route(Auth::user()->getRoleNames()->first() . '.account.index')
+            ->with('success', 'You have succcessfully deleted a user!');
     }
 
     public function loginIndex()

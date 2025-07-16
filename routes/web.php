@@ -32,6 +32,7 @@ Route::middleware(['auth'])
                 Route::get('/dashboard', [HomeController::class, 'index'])->name('dashboard');
                 Route::get('/participants/verify', [ParticipantController::class, 'verifyQrIndex'])->name('verifyQr.index');
                 Route::post('/participants/qr/verification', [ParticipantController::class, 'verifyQr'])->name('pariticipant.verify');
+                Route::resource('account', AccountController::Class);
             });
         
         Route::middleware('role:admin')

@@ -3,7 +3,7 @@
 @section('title', 'Registered Participants')
 
 @section('content')
-<div class="max-w-7xl mx-auto px-4 py-10">
+<div class="max-w-7xl mx-auto px-4 py-10 mt-10">
     <h1 class="text-2xl sm:text-3xl font-extrabold text-center text-blue-700 mb-8">
         🎽 {{ $total }} Registered Participants 
     </h1>

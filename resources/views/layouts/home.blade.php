@@ -9,6 +9,8 @@
     <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js" defer></script>
     <script src="https://kit.fontawesome.com/4f2d7302b1.js" crossorigin="anonymous"></script>
     <link rel="icon" type="image/webp" href="{{ asset('images/city_logo.webp') }}">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
     @stack('styles')
 </head>
 
@@ -19,16 +21,20 @@
         x-data="{ mobileMenuOpen: false, userMenuOpen: false }">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex items-center justify-between h-16">
-                <a href="{{ route(Auth::user()->getRoleNames()->first() . '.dashboard') }}" class="flex items-center space-x-2">
+                <a href="{{ route(Auth::user()->getRoleNames()->first() . '.dashboard') }}"
+                    class="flex items-center space-x-2">
                     <img src="{{ asset('images/city_logo.webp') }}" class="h-8 w-8 object-contain" alt="Logo">
                     <span class="text-lg font-semibold text-gray-800">Color Run</span>
                 </a>
                 <div class="hidden sm:flex flex-grow justify-center space-x-6 text-sm font-medium text-gray-700">
-                    <a href="{{ route(Auth::user()->getRoleNames()->first() . '.dashboard') }}" class="hover:text-blue-600 transition">Home</a>
+                    <a href="{{ route(Auth::user()->getRoleNames()->first() . '.dashboard') }}"
+                        class="hover:text-blue-600 transition">Home</a>
                     @role('superadmin')
-                    <a href="#" class="hover:text-blue-600 transition">List of accounts</a>
+                    <a href="{{ route(Auth::user()->getRoleNames()->first() . '.account.index') }}"
+                        class="hover:text-blue-600 transition">List of accounts</a>
                     @endrole
-                    <a href="{{ route(Auth::user()->getRoleNames()->first() . '.verifyQr.index') }}" class="hover:text-blue-600 transition">Verify Qr</a>
+                    <a href="{{ route(Auth::user()->getRoleNames()->first() . '.verifyQr.index') }}"
+                        class="hover:text-blue-600 transition">Verify Qr</a>
                 </div>
                 <div class="hidden sm:block">
                     <div class="relative" x-data="{ open: false }">
@@ -86,7 +92,7 @@
     </header>
     @endauth
 
-    <main class="flex items-center justify-center min-h-screen pt-5 px-4">
+    <main class="flex items-center justify-center pt-5 px-4">
         @yield('content')
     </main>
 
