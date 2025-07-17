@@ -15,7 +15,7 @@
             @csrf
             <div class="mb-4">
                 <label class="block text-sm text-gray-600 mb-1">Max Slots</label>
-                <input type="number" name="slot" min="1" required value="{{ old('slot', $slot->slot) }}"
+                <input type="number" name="slot" min="1" required value="{{ old('slot', $slot->slot ?? '') }}"
                     class="w-full px-3 py-2 border rounded-md text-sm focus:outline-none focus:ring-2 focus:ring-pink-500">
             </div>
             <div class="flex justify-end pt-2">
