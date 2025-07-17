@@ -5,6 +5,7 @@ namespace App\Services;
 use App\Jobs\EventRegisterEmail;
 use App\Jobs\ParticipantClockInJob;
 use App\Jobs\QrCodeGeneration;
+use App\Models\Companion;
 use App\Models\Participant;
 use App\Models\ParticipantClockIn;
 use App\Models\ParticipantQr;
@@ -27,6 +28,12 @@ class ParticipantServices
         if ($participant) {
             QrCodeGeneration::dispatch($participant);
             EventRegisterEmail::dispatch($participant);
+            if (!empty($data['companion_name'])) {
+                Companion::create([
+                    'participant_id' => $participant->id,
+                    'name' => $data['companion_name'],
+                ]);
+            }
         }
 
         return $participant;

@@ -20,11 +20,13 @@
             <thead class="bg-blue-100 text-blue-800 text-xs font-semibold uppercase tracking-wide">
                 <tr>
                     <th class="px-4 py-3 w-48">Name</th>
+                    <th class="px-4 py-3 w-48">Companion</th>
                     <th class="px-4 py-3 hidden sm:table-cell">Age</th>
                     <th class="px-4 py-3 hidden sm:table-cell">Sex</th>
                     <th class="px-4 py-3 hidden md:table-cell">Email</th>
                     <th class="px-4 py-3 hidden md:table-cell">Phone</th>
                     <th class="px-4 py-3 hidden lg:table-cell">Shirt Size</th>
+                    <th class="px-4 py-3 hidden lg:table-cell">Status</th>
                 </tr>
             </thead>
             <tbody id="participants-tbody" class="divide-y divide-gray-200">

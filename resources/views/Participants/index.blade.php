@@ -4,8 +4,7 @@
 
 @section('content')
 @include('components.alert')
-
-<div class="w-full min-h-screen bg-cover bg-center flex flex-col items-center justify-center px-4">
+<div class="w-full min-h-screen bg-cover bg-center flex flex-col items-center justify-center px-4 mb-10">
     <div class="mb-3">
         <img src="{{ asset('images/city_logo.webp') }}" alt="Color Run Logo" class="h-20 sm:h-24 object-contain">
     </div>
@@ -14,7 +13,8 @@
             Participant Registration
         </h1>
         <p class="text-xs sm:text-sm text-center text-gray-600 mb-5">
-            Fill out the form below to register for the Color Fun Run event.
+            Fill out the form below to register for the Color Fun Run event.<br>
+            <span class="text-pink-600 font-medium">Note:</span> Adding a companion counts as <strong>+1 slot</strong>
         </p>
 
         <form x-data="{ loading: false }" x-on:submit="loading = true" action="{{ route('participants.store') }}"
@@ -70,22 +70,43 @@
                 <select name="shirt_size"
                     class="w-full px-3 py-2 text-sm border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400 {{ $errors->has('shirt_size') ? 'border-red-500' : '' }}">
                     <option value="">Select size</option>
-                    <option value="XS" {{ old('shirt_size') == 'XS' ? 'selected' : '' }}>XS</option>
-                    <option value="S" {{ old('shirt_size') == 'S' ? 'selected' : '' }}>S</option>
-                    <option value="M" {{ old('shirt_size') == 'M' ? 'selected' : '' }}>M</option>
-                    <option value="L" {{ old('shirt_size') == 'L' ? 'selected' : '' }}>L</option>
-                    <option value="XL" {{ old('shirt_size') == 'XL' ? 'selected' : '' }}>XL</option>
-                    <option value="XXL" {{ old('shirt_size') == 'XXL' ? 'selected' : '' }}>XXL</option>
+                    <option value="XS" {{ old('shirt_size') == 'XS' ? 'selected' : '' }}>Extra small</option>
+                    <option value="S" {{ old('shirt_size') == 'S' ? 'selected' : '' }}>Small</option>
+                    <option value="M" {{ old('shirt_size') == 'M' ? 'selected' : '' }}>Medium</option>
+                    <option value="L" {{ old('shirt_size') == 'L' ? 'selected' : '' }}>Large</option>
+                    <option value="XL" {{ old('shirt_size') == 'XL' ? 'selected' : '' }}>Extra Large</option>
+                    <option value="XXL" {{ old('shirt_size') == 'XXL' ? 'selected' : '' }}>Double Extra Large</option>
+                    <option value="XXXL" {{ old('shirt_size') == 'XXXL' ? 'selected' : '' }}>Triple Extra Large</option>
                 </select>
                 @error('shirt_size')
                 <p class="text-xs text-red-600 mt-1">{{ $message }}</p>
                 @enderror
             </div>
-            <button type="submit"
-                class="w-full py-2.5 bg-blue-600 text-white text-sm font-semibold rounded-md transition duration-200 hover:scale-[1.01] hover:bg-blue-700">
-                Submit Registration
-            </button>
-            @include('components.loading')
+            <div x-data="{ hasCompanion: {{ old('has_companion') ? 'true' : 'false' }} }" class="space-y-2">
+                <input type="hidden" name="has_companion" value="0">
+                <label class="flex items-center space-x-2 text-sm text-gray-700">
+                    <input type="checkbox" x-model="hasCompanion" name="has_companion" value="1"
+                        {{ old('has_companion') ? 'checked' : '' }} class="text-pink-600">
+                    <span>Do you have a companion?</span>
+                </label>
+
+                <div x-show="hasCompanion" x-transition>
+                    <label class="block mb-1 text-xs font-medium text-gray-700">Companion Name</label>
+                    <input type="text" name="companion_name" value="{{ old('companion_name') }}"
+                        class="w-full px-3 py-2 text-sm border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400 {{ $errors->has('companion_name') ? 'border-red-500' : '' }}">
+                    @error('companion_name')
+                    <p class="text-xs text-red-600 mt-1">{{ $message }}</p>
+                    @enderror
+                </div>
+            </div>
+            <div x-data="{ showConsentModal: false }">
+                <button type="button" @click="showConsentModal = true"
+                    class="w-full py-2.5 bg-blue-600 text-white text-sm font-semibold rounded-md transition duration-200 hover:scale-[1.01]  hover:bg-pink-700">
+                    Submit Registration
+                </button>
+                @include('Participant.partial.consent')
+                @include('components.loading')
+            </div>
         </form>
         <p class="text-xs sm:text-sm text-center text-gray-600 mt-5">
             Already have a QR code?

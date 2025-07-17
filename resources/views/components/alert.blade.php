@@ -1,35 +1,41 @@
 @if (session('success'))
-<div x-data="{ show: true }" x-init="setTimeout(() => show = false, 5000)" x-show="show"
-    x-transition:enter="transform ease-out duration-300" x-transition:enter-start="-translate-y-8 opacity-0"
-    x-transition:enter-end="translate-y-0 opacity-100" x-transition:leave="transform ease-in duration-300"
-    x-transition:leave-start="translate-y-0 opacity-100" x-transition:leave-end="-translate-y-8 opacity-0"
-    class="fixed top-4 left-1/2 transform -translate-x-1/2 z-50 w-[90%] sm:w-auto max-w-md rounded-md bg-green-100 border border-green-400 text-green-800 px-4 py-3 text-sm shadow-lg">
-    <div class="relative pr-6">
-        <span>{{ session('success') }}</span>
-        <button @click="show = false" class="absolute top-1 right-1 text-green-700 hover:text-green-900">
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24"
-                stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
-            </svg>
-        </button>
+<div x-data="{ open: true }" x-init="setTimeout(() => open = false, 3000)" x-show="open"
+    x-transition:enter="transition ease-out duration-300" x-transition:enter-start="opacity-0 translate-y-2"
+    x-transition:enter-end="opacity-100 translate-y-0" x-transition:leave="transition ease-in duration-300"
+    x-transition:leave-start="opacity-100 translate-y-0" x-transition:leave-end="opacity-0 translate-y-2"
+    class="fixed top-6 right-6 bg-green-100 border border-green-400 text-green-700 px-6 py-4 rounded-lg shadow-lg z-50"
+    role="alert">
+    <div class="flex items-center justify-between space-x-4">
+        <span class="text-sm font-medium">{{ session('success') }}</span>
+        <button @click="open = false" class="text-green-700 hover:text-green-900 text-lg">&times;</button>
     </div>
 </div>
 @endif
 
+@foreach ($errors->all() as $index => $error)
+<div x-data="{ open: true }" x-init="setTimeout(() => open = false, 3000 + ({{ $index }} * 200))" x-show="open"
+    x-transition:enter="transition ease-out duration-300" x-transition:enter-start="opacity-0 translate-y-2"
+    x-transition:enter-end="opacity-100 translate-y-0" x-transition:leave="transition ease-in duration-300"
+    x-transition:leave-start="opacity-100 translate-y-0" x-transition:leave-end="opacity-0 translate-y-2"
+    class="fixed right-6 bg-red-100 border border-red-400 text-red-700 px-6 py-4 rounded-lg shadow-lg z-50 w-80"
+    :style="'top: ' + (1.5 + (6 * {{ $index }})) + 'rem'" role="alert">
+    <div class="flex items-center justify-between space-x-4">
+        <span class="text-sm font-medium">{{ $error }}</span>
+        <button @click="open = false" class="text-red-700 hover:text-red-900 text-lg">&times;</button>
+    </div>
+</div>
+@endforeach
+
 @if (session('failed'))
-<div x-data="{ show: true }" x-init="setTimeout(() => show = false, 5000)" x-show="show"
-    x-transition:enter="transform ease-out duration-300" x-transition:enter-start="-translate-y-8 opacity-0"
-    x-transition:enter-end="translate-y-0 opacity-100" x-transition:leave="transform ease-in duration-300"
-    x-transition:leave-start="translate-y-0 opacity-100" x-transition:leave-end="-translate-y-8 opacity-0"
-    class="fixed top-4 left-1/2 transform -translate-x-1/2 z-50 w-[90%] sm:w-auto max-w-md rounded-md bg-red-100 border border-red-400 text-red-800 px-4 py-3 text-sm shadow-lg">
-    <div class="relative pr-6">
-        <span>{{ session('failed') }}</span>
-        <button @click="show = false" class="absolute top-1 right-1 text-red-700 hover:text-red-900">
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24"
-                stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
-            </svg>
-        </button>
+<div x-data="{ open: true }" x-init="setTimeout(() => open = false, 3000)" x-show="open"
+    x-transition:enter="transition ease-out duration-300" x-transition:enter-start="opacity-0 translate-y-2"
+    x-transition:enter-end="opacity-100 translate-y-0" x-transition:leave="transition ease-in duration-300"
+    x-transition:leave-start="opacity-100 translate-y-0" x-transition:leave-end="opacity-0 translate-y-2"
+    class="fixed top-6 right-6 bg-red-100 border border-red-400 text-red-700 px-6 py-4 rounded-lg shadow-lg z-50"
+    role="alert">
+    <div class="flex items-center justify-between space-x-4">
+        <span class="text-sm font-medium">{{ session('failed') }}</span>
+        <button @click="open = false" class="text-red-700 hover:text-red-900 text-lg">&times;</button>
     </div>
 </div>
 @endif

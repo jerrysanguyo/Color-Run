@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Companion;
 use App\Models\Participant;
 use Illuminate\Http\Request;
 
@@ -18,7 +19,7 @@ class HomeController extends Controller
             ->paginate(10)
             ->appends(['search' => $search]);
         
-        $total = Participant::count();
+        $total = Participant::count() + Companion::count();
 
         return view('dashboard.index', compact('participants', 'search', 'total'));
     }

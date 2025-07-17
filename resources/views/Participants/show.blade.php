@@ -4,7 +4,7 @@
 
 @section('content')
 @include('components.alert')
-<div class="w-full min-h-screen flex flex-col items-center justify-center px-4 pt-10">
+<div class="w-full min-h-screen flex flex-col items-center justify-center px-4 pt-10 mb-10">
     <div class="mb-4">
         <img src="{{ asset('images/city_logo.webp') }}" alt="City of Taguig Logo" class="h-20 sm:h-24 object-contain">
     </div>
@@ -24,6 +24,12 @@
                 <p><span class="font-semibold">👤 Full Name:</span> {{ $participant->name }}</p>
                 <p><span class="font-semibold">📝 Registered On:</span> {{ $participant->created_at->format('F d, Y') }}
                 </p>
+                @if ($participant->companion && $participant->companion->name)
+                <p>
+                    <i class="fas fa-user-friends text-pink-600 mr-1"></i>
+                    <span class="font-semibold">Companion Name:</span> {{ $participant->companion->name }}
+                </p>
+                @endif
                 @auth
                 <p><span class="font-semibold">⏱️ Time In:</span>
                     {{ optional($participant->clockIn)->created_at?->format('F d, Y - h:i A') ?? 'N/A' }}

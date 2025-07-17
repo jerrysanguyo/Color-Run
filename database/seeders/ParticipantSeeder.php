@@ -12,7 +12,7 @@ class ParticipantSeeder extends Seeder
     public function run(): void
     {
         Participant::factory()
-            ->count(700)
+            ->count(699)
             ->create()
             ->each(function ($participant) {
             QrCodeGeneration::dispatch($participant);

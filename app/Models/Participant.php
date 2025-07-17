@@ -27,4 +27,9 @@ class Participant extends Model
     {
         return $this->hasOne(ParticipantClockIn::class, 'participant_id');
     }
+
+    public function companion()
+    {
+        return $this->hasOne(Companion::class, 'participant_id');
+    }
 }

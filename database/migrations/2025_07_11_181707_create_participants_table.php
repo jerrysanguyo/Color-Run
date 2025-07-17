@@ -15,7 +15,7 @@ return new class extends Migration
             $table->enum('sex',['Male', 'Female', 'Prefer not to say']);
             $table->string('email')->unique();
             $table->string('phone')->unique();
-            $table->enum('shirt_size', ['XS', 'S', 'M', 'L', 'XL', 'XXL']);
+            $table->enum('shirt_size', ['XS', 'S', 'M', 'L', 'XL', 'XXL', 'XXXL']);
             $table->timestamps();
         });
     }
