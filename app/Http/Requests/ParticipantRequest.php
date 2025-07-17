@@ -4,6 +4,7 @@ namespace App\Http\Requests;
 
 use App\Models\Companion;
 use App\Models\Participant;
+use App\Models\Slot;
 use Illuminate\Foundation\Http\FormRequest;
 
 class ParticipantRequest extends FormRequest
@@ -42,8 +43,8 @@ class ParticipantRequest extends FormRequest
             if ($this->filled('has_companion') && $this->filled('companion_name')) {
                 $newEntries += 1;
             }
-
-            if ($total + $newEntries > 2) {
+            $slot = Slot::where('id', 1)->first();
+            if ($total + $newEntries > $slot->slot) {
                 $validator->errors()->add('name', 'Registration is closed. Maximum number of participants reached.');
             }
         });

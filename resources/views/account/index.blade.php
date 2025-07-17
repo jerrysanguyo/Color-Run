@@ -4,7 +4,7 @@
 
 @section('content')
 <div
-    class="w-full bg-white p-8 rounded-lg shadow-lg border border-gray-200 overflow-auto max-h-[85vh] min-h-[85vh] mt-20">
+    class="w-full p-8 overflow-auto max-h-[85vh] min-h-[85vh] mt-20">
     <div class="flex justify-between items-center mb-5 overflow-auto">
         <h1 class="text-3xl font-bold mb-2 text-center text-gray-800">{{ $page_title }} records</h1>
         @unless ($resource === 'feedback')
@@ -19,7 +19,7 @@
     </div>
 
     @include('components.alert')
-    <table class="min-w-full border border-gray-200 shadow-lg rounded-lg" id="{{ $resource }}-table">
+    <table class="min-w-full bg-white border border-gray-200 shadow-lg rounded-lg" id="{{ $resource }}-table">
         <thead class="bg-pink-600">
             <tr class="text-white uppercase text-md leading-normal">
                 @foreach ($columns as $column)

@@ -4,12 +4,14 @@ namespace App\Http\Controllers;
 
 use App\Models\Companion;
 use App\Models\Participant;
+use App\Models\Slot;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
 {
     public function index(Request $request)
     {
+        $slot = Slot::where('id', 1)->first();
         $search = $request->input('search');
 
         $participants = Participant::when($search, function ($query, $search) {
@@ -21,7 +23,7 @@ class HomeController extends Controller
         
         $total = Participant::count() + Companion::count();
 
-        return view('dashboard.index', compact('participants', 'search', 'total'));
+        return view('dashboard.index', compact('participants', 'search', 'total' , 'slot'));
     }
 
     public function search(Request $request)

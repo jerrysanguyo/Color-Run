@@ -104,7 +104,7 @@
                     class="w-full py-2.5 bg-blue-600 text-white text-sm font-semibold rounded-md transition duration-200 hover:scale-[1.01]  hover:bg-pink-700">
                     Submit Registration
                 </button>
-                @include('Participant.partial.consent')
+                @include('Participants.partial.consent')
                 @include('components.loading')
             </div>
         </form>

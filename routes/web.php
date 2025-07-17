@@ -3,6 +3,7 @@
 use App\Http\Controllers\Auth\AccountController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ParticipantController;
+use App\Http\Controllers\SlotController;
 use App\Models\Participant;
 use Illuminate\Support\Facades\Route;
 
@@ -33,6 +34,7 @@ Route::middleware(['auth'])
                 Route::get('/participants/verify', [ParticipantController::class, 'verifyQrIndex'])->name('verifyQr.index');
                 Route::post('/participants/qr/verification', [ParticipantController::class, 'verifyQr'])->name('pariticipant.verify');
                 Route::resource('account', AccountController::Class);
+                Route::resource('slot', SlotController::class);
             });
         
         Route::middleware('role:admin')
@@ -43,6 +45,8 @@ Route::middleware(['auth'])
                 Route::get('/dashboard', [HomeController::class, 'index'])->name('dashboard');
                 Route::get('/participants/verify', [ParticipantController::class, 'verifyQrIndex'])->name('verifyQr.index');
                 Route::post('/participants/qr/verification', [ParticipantController::class, 'verifyQr'])->name('pariticipant.verify');
+                Route::resource('account', AccountController::Class);
+                Route::resource('slot', SlotController::class);
             });
         
         Route::middleware('role:user')
