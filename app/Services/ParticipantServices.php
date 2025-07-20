@@ -23,6 +23,7 @@ class ParticipantServices
             'email' => $data['email'],
             'phone' => $data['phone'],
             'shirt_size' => $data['shirt_size'],
+            'kilometer' => $data['kilometer'],
         ]);
 
         if ($participant) {

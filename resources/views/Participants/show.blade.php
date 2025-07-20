@@ -21,20 +21,38 @@
                 </div>
             </div>
             <div class="text-center text-gray-700 text-sm space-y-1">
-                <p><span class="font-semibold">👤 Full Name:</span> {{ $participant->name }}</p>
-                <p><span class="font-semibold">📝 Registered On:</span> {{ $participant->created_at->format('F d, Y') }}
+                <p>
+                    <i class="fas fa-user text-pink-600 mr-1"></i>
+                    <span class="font-semibold">Full Name:</span> {{ $participant->name }}
                 </p>
+
+                <p>
+                    <i class="fas fa-calendar-check text-pink-600 mr-1"></i>
+                    <span class="font-semibold">Registered On:</span> {{ $participant->created_at->format('F d, Y') }}
+                </p>
+
+                <p>
+                    <i class="fas fa-route text-pink-600 mr-1"></i>
+                    <span class="font-semibold">Kilometer:</span> {{ $participant->kilometer }}
+                </p>
+
                 @if ($participant->companion && $participant->companion->name)
                 <p>
                     <i class="fas fa-user-friends text-pink-600 mr-1"></i>
                     <span class="font-semibold">Companion Name:</span> {{ $participant->companion->name }}
                 </p>
                 @endif
+
                 @auth
-                <p><span class="font-semibold">⏱️ Time In:</span>
+                <p>
+                    <i class="fas fa-clock text-pink-600 mr-1"></i>
+                    <span class="font-semibold">Time In:</span>
                     {{ optional($participant->clockIn)->created_at?->format('F d, Y - h:i A') ?? 'N/A' }}
                 </p>
-                <p><span class="font-semibold">🧑‍💻 Scanned By:</span>
+
+                <p>
+                    <i class="fas fa-user-check text-pink-600 mr-1"></i>
+                    <span class="font-semibold">Scanned By:</span>
                     {{ optional($participant->clockIn?->scannedBy)->name ?? 'N/A' }}
                 </p>
                 @endauth

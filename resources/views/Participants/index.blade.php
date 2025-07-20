@@ -82,6 +82,18 @@
                 <p class="text-xs text-red-600 mt-1">{{ $message }}</p>
                 @enderror
             </div>
+            <div>
+                <label class="block mb-1 text-xs font-medium text-gray-700">Kilometer</label>
+                <select name="kilometer"
+                    class="w-full px-3 py-2 text-sm border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400 {{ $errors->has('kilometer') ? 'border-red-500' : '' }}">
+                    <option value="">Select size</option>
+                    <option value="1km" {{ old('kilometer') == '1km' ? 'selected' : '' }}>1 KM</option>
+                    <option value="2km" {{ old('kilometer') == '2km' ? 'selected' : '' }}>2 KM</option>
+                </select>
+                @error('kilometer')
+                <p class="text-xs text-red-600 mt-1">{{ $message }}</p>
+                @enderror
+            </div>
             <div x-data="{ hasCompanion: {{ old('has_companion') ? 'true' : 'false' }} }" class="space-y-2">
                 <input type="hidden" name="has_companion" value="0">
                 <label class="flex items-center space-x-2 text-sm text-gray-700">

@@ -23,6 +23,7 @@ class ParticipantRequest extends FormRequest
             'email'           => 'required|email|unique:participants,email',
             'phone'           => 'required|string|unique:participants,phone|max:11',
             'shirt_size'      => 'required|in:XS,S,M,L,XL,XXL,XXXL',
+            'kilometer'      => 'required|in:1km,2km',
             'agree1'          => 'accepted',
             'agree2'          => 'accepted',
             'agree3'          => 'accepted',
