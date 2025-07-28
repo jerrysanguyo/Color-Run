@@ -58,7 +58,6 @@
                 @endauth
             </div>
         </div>
-
         <div class="bg-white border-t px-6 py-4 text-center text-xs text-gray-500 space-y-2">
             <p>Please present this ticket with your QR code at the entrance for verification. This serves as your
                 official event pass.</p>

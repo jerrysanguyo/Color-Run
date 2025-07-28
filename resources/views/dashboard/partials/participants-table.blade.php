@@ -6,8 +6,12 @@
     <td class="px-4 py-3 hidden sm:table-cell">{{ $participant->companion->name ?? 'N/A' }}</td>
     <td class="px-4 py-3 hidden sm:table-cell">{{ $participant->age }}</td>
     <td class="px-4 py-3 hidden sm:table-cell">{{ $participant->sex }}</td>
-    <td class="px-4 py-3 hidden md:table-cell">{{ $participant->email }}</td>
-    <td class="px-4 py-3 hidden md:table-cell">{{ $participant->phone }}</td>
+    <td class="px-4 py-3 hidden md:table-cell break-words max-w-[180px]">
+        {{ $participant->email }}
+    </td>
+    <td class="px-4 py-3 hidden md:table-cell break-words max-w-[140px]">
+        {{ $participant->phone }}
+    </td>
     <td class="px-4 py-3 hidden lg:table-cell">
         <span class="inline-block px-2 py-1 rounded-full text-xs font-semibold text-white
                         {{ 

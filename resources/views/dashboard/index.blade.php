@@ -30,7 +30,7 @@
     </div>
 
     <div class="overflow-x-auto shadow-xl rounded-lg border border-gray-200 bg-white">
-        <table class="w-full table-auto sm:table-fixed text-sm text-left text-gray-700">
+        <table class="w-full table-auto text-sm text-left text-gray-700">
             <thead class="bg-blue-100 text-blue-800 text-xs font-semibold uppercase tracking-wide">
                 <tr>
                     <th class="px-4 py-3 w-48">Name</th>
