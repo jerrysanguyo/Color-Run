@@ -61,7 +61,7 @@ class ParticipantController extends Controller
 
     public function verifyQr(VerifyQrRequest $request)
     {
-        $participantId = $request['qr_code'];
+        $participantId = Participant::where('uuid', $request['qr_code'])->first();
         $participant = $this->participantServices->verifyQr($request->validated());
 
         if($participant === null)
@@ -74,12 +74,12 @@ class ParticipantController extends Controller
         if($participant === 'already_scanned')
         {
             return redirect()
-                ->route('participants.show', $participantId)
+                ->route('participants.show', $participantId->id)
                 ->with('failed', 'Qr code has been scanned already.');
         }
 
         return redirect()
-                ->route('participants.show', $participantId)
+                ->route('participants.show', $participantId->id)
                 ->with('success', 'Verification successfull!');
     }
-}
+}   

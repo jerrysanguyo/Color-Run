@@ -10,6 +10,8 @@ return new class extends Migration
     {
         Schema::create('participants', function (Blueprint $table) {
             $table->id();
+            $table->uuid('uuid')->unique();
+            $table->enum('participant_type',['advocate','pwd']);
             $table->string('name');
             $table->integer('age');
             $table->enum('sex',['Male', 'Female', 'Prefer not to say']);

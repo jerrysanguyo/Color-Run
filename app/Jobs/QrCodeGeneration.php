@@ -26,14 +26,14 @@ class QrCodeGeneration implements ShouldQueue
     public function handle(): void
     {
         $directory = public_path('qrCode');
-        $fileName = 'qr_' . $this->participant->id . '_' . $this->participant->name . '.png';
+        $fileName = 'qr_' . $this->participant->uuid . '_' . $this->participant->name . '.png';
         $filePath = $directory . '/' . $fileName;
         
         if (!File::exists($directory)) {
             File::makeDirectory($directory, 0755, true);
         }
         
-        $qrContent = $this->participant->id;
+        $qrContent = $this->participant->uuid;
         $qrImage = QrCode::format('png')->size(200)->generate($qrContent);
         
         file_put_contents($filePath, $qrImage);

@@ -10,6 +10,8 @@ class Participant extends Model
     use HasFactory;
     protected $table = 'participants';
     protected $fillable = [
+        'uuid',
+        'participant_type',
         'name',
         'age',
         'sex',

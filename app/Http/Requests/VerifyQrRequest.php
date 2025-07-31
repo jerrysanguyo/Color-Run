@@ -14,7 +14,7 @@ class VerifyQrRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'qr_code' => 'required|integer|exists:participants,id',
+            'qr_code' => 'required|exists:participants,uuid',
         ];
     }
 }

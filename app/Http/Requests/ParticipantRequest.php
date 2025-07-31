@@ -28,7 +28,8 @@ class ParticipantRequest extends FormRequest
             'agree2'            => 'accepted',
             'agree3'            => 'accepted',
             'participant_type'  => 'required|in:PWD,Advocate',
-            'companion_name'    => 'required_if:participant_type,PWD|nullable|string|max:255',
+            // 'companion_name'    => 'required_if:participant_type,PWD|nullable|string|max:255',
+            'companion_name'    => 'nullable|string|max:255',
         ];
     }
 

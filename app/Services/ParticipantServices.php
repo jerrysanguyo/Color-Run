@@ -9,6 +9,7 @@ use App\Models\Companion;
 use App\Models\Participant;
 use App\Models\ParticipantClockIn;
 use App\Models\ParticipantQr;
+use Illuminate\Support\Str;
 use SimpleSoftwareIO\QrCode\Facades\QrCode;
 use Illuminate\Support\Facades\File;
 
@@ -17,6 +18,8 @@ class ParticipantServices
     public function store(array $data)
     {
         $participant = Participant::create([
+            'uuid' => Str::uuid()->toString(),
+            'participant_type' => $data['participant_type'],
             'name' => $data['name'],
             'age' => $data['age'],
             'sex' => $data['sex'],
@@ -49,14 +52,14 @@ class ParticipantServices
 
     public function verifyQr($data)
     {
-        $participant = Participant::findOrFail($data['qr_code']);
+        $participant = Participant::where('uuid', $data['qr_code'])->first(); //qr_code uuid
 
         if(!$participant)
         {
             return null;
         }
 
-        $clockInCheck = ParticipantClockIn::timeInCheck($data['qr_code'])->exists();
+        $clockInCheck = ParticipantClockIn::timeInCheck($participant->id)->exists(); // time in check needs to be the participant id for fk
 
         if($clockInCheck)
         {

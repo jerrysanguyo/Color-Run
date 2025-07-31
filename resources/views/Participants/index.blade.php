@@ -20,7 +20,7 @@ $oldType = old('participant_type');
             <h2 class="text-xl font-semibold text-gray-800 mb-4">Please choose your participant type</h2>
             <div class="space-y-3">
                 <button @click="type = 'PWD'; showForm = true"
-                    class="w-full bg-blue-600 text-white py-2 rounded hover:bg-blue-700 transition">I'm a PWD</button>
+                    class="w-full bg-blue-600 text-white py-2 rounded hover:bg-blue-700 transition">I'm a Person with diability (PWD)</button>
                 <button @click="type = 'Advocate'; showForm = true"
                     class="w-full bg-pink-600 text-white py-2 rounded hover:bg-pink-700 transition">I'm an
                     Advocate</button>

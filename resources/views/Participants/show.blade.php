@@ -23,7 +23,7 @@
             <div class="text-center text-gray-700 text-sm space-y-1">
                 <p>
                     <i class="fas fa-user text-pink-600 mr-1"></i>
-                    <span class="font-semibold">Full Name:</span> {{ $participant->name }}
+                    <span class="font-semibold">Full Name:</span> {{ $participant->name }} - <span class="uppercase">{{ $participant->participant_type }}</span>
                 </p>
 
                 <p>
