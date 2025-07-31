@@ -25,7 +25,7 @@
                     Edit Slot
                 </button>
             </div>
-            @include('dashboard.partial.slot-modal')
+            @include('dashboard.partials.slot-modal')
         </div>
     </div>
 
@@ -34,7 +34,8 @@
             <thead class="bg-blue-100 text-blue-800 text-xs font-semibold uppercase tracking-wide">
                 <tr>
                     <th class="px-4 py-3 w-48">Name</th>
-                    <th class="px-4 py-3 w-48">Companion</th>
+                    <th class="px-4 py-3">Companion</th>
+                    <th class="px-4 py-3">Type</th>
                     <th class="px-4 py-3 hidden sm:table-cell">Age</th>
                     <th class="px-4 py-3 hidden sm:table-cell">Sex</th>
                     <th class="px-4 py-3 hidden md:table-cell">Email</th>

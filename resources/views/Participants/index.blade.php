@@ -4,6 +4,7 @@
 
 @section('content')
 @include('components.alert')
+@include('components.loading')
 
 @php
 $oldType = old('participant_type');
@@ -20,7 +21,8 @@ $oldType = old('participant_type');
             <h2 class="text-xl font-semibold text-gray-800 mb-4">Please choose your participant type</h2>
             <div class="space-y-3">
                 <button @click="type = 'PWD'; showForm = true"
-                    class="w-full bg-blue-600 text-white py-2 rounded hover:bg-blue-700 transition">I'm a Person with diability (PWD)</button>
+                    class="w-full bg-blue-600 text-white py-2 rounded hover:bg-blue-700 transition">I'm a Person with
+                    diability (PWD)</button>
                 <button @click="type = 'Advocate'; showForm = true"
                     class="w-full bg-pink-600 text-white py-2 rounded hover:bg-pink-700 transition">I'm an
                     Advocate</button>
@@ -40,12 +42,13 @@ $oldType = old('participant_type');
                 </h1>
                 <p class="text-xs sm:text-sm text-center text-gray-600 mb-5">
                     Fill out the form below to register for the Color Fun Run event.<br>
-                    <span class="text-pink-600 font-medium">Note:</span> Adding a companion counts as <strong>+1
-                        slot</strong>
+                    <span x-show="type === 'PWD'" x-transition class="text-pink-600 font-medium">Note:</span> <span
+                        x-show="type === 'PWD'" x-transition>Adding a companion counts as <strong>+1
+                            slot</strong></span>
                 </p>
 
-                <form x-on:submit="loading = true" action="{{ route('participants.store') }}" method="POST"
-                    class="space-y-4 relative">
+                <form x-data="{ loading: false }" x-on:submit="loading = true"
+                    action="{{ route('participants.store') }}" method="POST" class="space-y-4 relative">
                     @csrf
 
                     <input type="hidden" name="participant_type" :value="type">
@@ -138,6 +141,8 @@ $oldType = old('participant_type');
                         <label class="block mb-1 text-xs font-medium text-gray-700">Companion Name</label>
                         <input type="text" name="companion_name" value="{{ old('companion_name') }}"
                             class="w-full px-3 py-2 text-sm border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400 {{ $errors->has('companion_name') ? 'border-red-500' : '' }}">
+
+                        <p class="text-xs text-red-600 mt-1">Kindly leave this blank if you don't have companion.</p>
                         @error('companion_name')
                         <p class="text-xs text-red-600 mt-1">{{ $message }}</p>
                         @enderror

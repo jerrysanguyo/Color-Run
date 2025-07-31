@@ -3,7 +3,8 @@
     <td class="px-4 py-3 font-medium text-gray-900 whitespace-nowrap">
         {{ $participant->name }}
     </td>
-    <td class="px-4 py-3 hidden sm:table-cell">{{ $participant->companion->name ?? 'N/A' }}</td>
+    <td class="px-4 py-3 sm:table-cell break-words max-w-[180px]">{{ $participant->companion->name ?? 'N/A' }}</td>
+    <td class="px-4 py-3 sm:table-cell uppercase">{{ $participant->participant_type ?? 'N/A' }}</td>
     <td class="px-4 py-3 hidden sm:table-cell">{{ $participant->age }}</td>
     <td class="px-4 py-3 hidden sm:table-cell">{{ $participant->sex }}</td>
     <td class="px-4 py-3 hidden md:table-cell break-words max-w-[180px]">

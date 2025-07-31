@@ -9,7 +9,7 @@
     <div class="bg-white shadow-lg rounded-xl p-6 sm:p-8 border-l-4 border-blue-600 relative">
         <div class="text-center">
             <h1 class="text-2xl sm:text-3xl font-extrabold text-gray-800 mb-2 uppercase">
-                🎨 Color Fun Run for Taguig Persons with Disability
+                🎨 3rd Taguig Color fun Run with Person with Disability
             </h1>
             <p class="text-sm sm:text-base font-semibold text-yellow-600 mb-1">
                 🌟 Join us in celebrating the 47th National Disability Rights (NDR) Week! 🌟
@@ -37,7 +37,7 @@
                     </a>
                 </p>
                 <p class="font-semibold text-blue-700 mt-3 mb-1">📅 Date:</p>
-                <p class="text-gray-800 text-sm">August 3, 2025 (Sunday)</p>
+                <p class="text-gray-800 text-sm">August 17, 2025 (Sunday)</p>
                 <p class="font-semibold text-blue-700 mt-3 mb-1">⏰ Time:</p>
                 <p class="text-gray-800 text-sm">5:00 AM</p>
                 <div class="mt-5 text-sm text-gray-700 bg-yellow-50 border border-yellow-200 rounded-md p-3">
