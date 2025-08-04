@@ -29,6 +29,7 @@ Route::middleware(['auth'])
             ->prefix('sa')
             ->name('superadmin.')
             ->group(function () {
+                Route::get('/participant/counts', [HomeController::class, 'countStats'])->name('participant.counts');
                 Route::post('/logout', [AccountController::class, 'logout'])->name('logout');
                 Route::get('/dashboard', [HomeController::class, 'index'])->name('dashboard');
                 Route::get('/participants/verify', [ParticipantController::class, 'verifyQrIndex'])->name('verifyQr.index');
@@ -41,6 +42,7 @@ Route::middleware(['auth'])
             ->prefix('ad')
             ->name('admin.')
             ->group(function () {
+                Route::get('/participant/counts', [HomeController::class, 'countStats'])->name('participant.counts');
                 Route::post('/logout', [AccountController::class, 'logout'])->name('logout');
                 Route::get('/dashboard', [HomeController::class, 'index'])->name('dashboard');
                 Route::get('/participants/verify', [ParticipantController::class, 'verifyQrIndex'])->name('verifyQr.index');
@@ -53,6 +55,7 @@ Route::middleware(['auth'])
             ->prefix('us')
             ->name('user.')
             ->group(function () {
+                Route::get('/participant/counts', [HomeController::class, 'countStats'])->name('participant.counts');
                 Route::post('/logout', [AccountController::class, 'logout'])->name('logout');
                 Route::get('/dashboard', [HomeController::class, 'index'])->name('dashboard');
                 Route::get('/participants/verify', [ParticipantController::class, 'verifyQrIndex'])->name('verifyQr.index');

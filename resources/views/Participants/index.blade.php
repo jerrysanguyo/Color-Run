@@ -22,7 +22,7 @@ $oldType = old('participant_type');
             <div class="space-y-3">
                 <button @click="type = 'PWD'; showForm = true"
                     class="w-full bg-blue-600 text-white py-2 rounded hover:bg-blue-700 transition">I'm a Person with
-                    diability (PWD)</button>
+                    disability (PWD)</button>
                 <button @click="type = 'Advocate'; showForm = true"
                     class="w-full bg-pink-600 text-white py-2 rounded hover:bg-pink-700 transition">I'm an
                     Advocate</button>

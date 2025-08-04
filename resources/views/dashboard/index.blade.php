@@ -5,6 +5,29 @@
 @section('content')
 @include('components.alert')
 <div class="max-w-7xl mx-auto px-4 py-10 mt-10">
+    <div class="w-full mb-6 px-4 grid grid-cols-1 sm:grid-cols-2 gap-4">
+        <div class="flex items-center p-4 bg-green-100 border-l-4 border-green-500 rounded-xl shadow-md">
+            <div class="text-green-600 text-4xl mr-4">
+                <i class="fas fa-check-circle"></i>
+            </div>
+            <div>
+                <p class="text-sm sm:text-base font-medium text-green-800">Scanned</p>
+                <p class="text-2xl font-extrabold text-green-700 leading-tight" id="scanned-count">
+                    {{ $scannedCount ?? 0 }}</p>
+            </div>
+        </div>
+
+        <div class="flex items-center p-4 bg-red-100 border-l-4 border-red-500 rounded-xl shadow-md">
+            <div class="text-red-600 text-4xl mr-4">
+                <i class="fas fa-times-circle"></i>
+            </div>
+            <div>
+                <p class="text-sm sm:text-base font-medium text-red-800">Not Scanned</p>
+                <p class="text-2xl font-extrabold text-red-700 leading-tight" id="not-scanned-count">
+                    {{ $notScannedCount ?? 0 }}</p>
+            </div>
+        </div>
+    </div>
     <h1 class="text-2xl sm:text-3xl font-extrabold text-center text-blue-700 mb-8">
         🎽 {{ $total }} Registered Participants
     </h1>
@@ -74,5 +97,17 @@ searchInput.addEventListener('input', function() {
             .catch(err => console.error('Search error:', err));
     }, 300);
 });
+
+function updateCounts() {
+    fetch("{{ route(Auth::user()->getRoleNames()->first() . '.participant.counts') }}")
+        .then(res => res.json())
+        .then(data => {
+            document.getElementById('scanned-count').textContent = data.scanned;
+            document.getElementById('not-scanned-count').textContent = data.notScanned;
+        })
+        .catch(err => console.error('Error fetching count stats:', err));
+}
+
+setInterval(updateCounts, 5000);
 </script>
 @endpush

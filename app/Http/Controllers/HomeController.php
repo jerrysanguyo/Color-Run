@@ -6,6 +6,7 @@ use App\Models\Companion;
 use App\Models\Participant;
 use App\Models\Slot;
 use Illuminate\Http\Request;
+use App\Models\ParticipantClockIn;
 
 class HomeController extends Controller
 {
@@ -38,6 +39,17 @@ class HomeController extends Controller
 
         return response()->json([
             'table' => view('dashboard.partials.participants-table', compact('participants'))->render(),
+        ]);
+    }
+
+    public function countStats()
+    {
+        $scannedCount = ParticipantClockIn::count();
+        $notScannedCount = Participant::count() - $scannedCount;
+
+        return response()->json([
+            'scanned' => $scannedCount,
+            'notScanned' => $notScannedCount
         ]);
     }
 }
