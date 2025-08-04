@@ -25,23 +25,30 @@ class AccountServices
 
     public function storeAccount(array $data)
     {
-        $register = User::updateOrcreate(
+        $existingUser = User::where('email', $data['email'])
+                            ->where('contact_number', $data['contact'])
+                            ->first();
+
+        $attributes = [
+            'name'              => $data['name'],
+            'email_verified_at' => now(),
+        ];
+
+        if (!empty($data['password'])) {
+            $attributes['password'] = bcrypt($data['password']);
+        }
+
+        $user = User::updateOrCreate(
             [
                 'email' => $data['email'],
                 'contact_number' => $data['contact'],
             ],
-            [
-                'name' => $data['name'],
-                'password'=> bcrypt($data['password']),
-                'email_verified_at' => now(),
-            ]
+            $attributes
         );
 
-        if ($register) {
-            $register->assignRole('user');
-        }
+        $user->syncRoles([$data['role']]);
 
-        return $register;
+        return $user;
     }
 
     public function storeDestroy($account): void

@@ -33,8 +33,15 @@ class User extends Authenticatable
 
     public static function getAllUser()
     {
-        return self::select('id', 'name', 'email', 'contact_number')->get();
+        return self::select('users.id', 'users.name', 'users.email', 'users.contact_number')
+            ->with('roles:name')
+            ->get()
+            ->map(function ($user) {
+                $user->role = $user->roles->pluck('name')->first();
+                return $user;
+            });
     }
+
 
     public function otps()
     {

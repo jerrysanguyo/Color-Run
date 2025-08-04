@@ -32,6 +32,7 @@
             <tr class="border border-gray-200 hover:bg-pink-50 transition-colors">
                 <td class="py-2 px-4">{{ $record->id ?? '' }}</td>
                 <td class="py-2 px-4">{{ $record->name ?? '' }}</td>
+                <td class="py-2 px-4">{{ $record->role ?? '' }}</td>
                 <td class="py-2 px-4">
                     <div class="inline-flex items-center space-x-2">
                         <div x-data="{ showEditModal: false }">

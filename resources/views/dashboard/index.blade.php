@@ -42,6 +42,7 @@
                     <i class="fas fa-search"></i>
                 </div>
             </div>
+            @role('superadmin|admin')
             <div class="w-full sm:w-auto">
                 <button @click="showModal = true"
                     class="w-full sm:w-auto px-4 py-2 text-sm font-medium text-white bg-pink-600 hover:bg-pink-700 rounded-lg shadow transition duration-200">
@@ -49,6 +50,7 @@
                 </button>
             </div>
             @include('dashboard.partials.slot-modal')
+            @endrole
         </div>
     </div>
 

@@ -58,6 +58,22 @@
         @enderror
     </div>
 
+    <div>
+        <label class="block mb-1 text-sm font-medium text-gray-700">Role</label>
+        <select name="role"
+            class="w-full px-3 py-2 text-sm border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400">
+            <option value="">Select a Role</option>
+            @foreach ($roles as $role)
+            <option value="{{ $role->name }}" {{ old('role', $record->role ?? '') == $role->name ? 'selected' : '' }}>
+                {{ ucfirst($role->name) }}
+            </option>
+            @endforeach
+        </select>
+        @error('role')
+        <p class="text-xs text-red-600 mt-1">{{ $message }}</p>
+        @enderror
+    </div>
+
     <div class="flex justify-end space-x-2 pt-4">
         <button type="button" @click="showModal = false"
             class="px-4 py-2 text-gray-700 border border-gray-300 rounded-lg hover:bg-pink-100 hover:text-pink-600 transition">

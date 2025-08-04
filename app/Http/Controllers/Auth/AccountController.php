@@ -12,6 +12,7 @@ use App\Models\User;
 use App\Services\Auth\AccountServices;
 use Illuminate\Auth\AuthenticationException;
 use Illuminate\Support\Facades\Auth;
+use Spatie\Permission\Models\Role;
 
 class AccountController extends Controller
 {
@@ -26,14 +27,16 @@ class AccountController extends Controller
     {
         $resource = 'account';
         $page_title = 'List of Account';
-        $columns = ['ID', 'NAME', 'ACTION'];
+        $columns = ['ID', 'NAME', 'ROLE','ACTION'];
         $data = User::getAllUser();
+        $roles = Role::all();
         return $dataTable
             ->render('account.index', compact(
                 'data',
                 'resource',
                 'page_title',
-                'columns'
+                'columns',
+                'roles'
             ));
     }
 
