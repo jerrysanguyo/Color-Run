@@ -18,7 +18,8 @@ class Participant extends Model
         'email',
         'phone',
         'shirt_size',
-        'kilometer'
+        'kilometer',
+        'organization',
     ];
 
     public function qr()

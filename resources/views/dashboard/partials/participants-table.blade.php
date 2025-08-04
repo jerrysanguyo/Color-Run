@@ -1,19 +1,7 @@
 @foreach($participants as $participant)
 <tr class="hover:bg-blue-50 transition duration-150 ease-in-out">
     <td class="px-4 py-3 font-medium text-gray-900 whitespace-nowrap">
-        {{ $participant->name }}
-    </td>
-    <td class="px-4 py-3 sm:table-cell break-words max-w-[180px]">{{ $participant->companion->name ?? 'N/A' }}</td>
-    <td class="px-4 py-3 sm:table-cell uppercase">{{ $participant->participant_type ?? 'N/A' }}</td>
-    <td class="px-4 py-3 hidden sm:table-cell">{{ $participant->age }}</td>
-    <td class="px-4 py-3 hidden sm:table-cell">{{ $participant->sex }}</td>
-    <td class="px-4 py-3 hidden md:table-cell break-words max-w-[180px]">
-        {{ $participant->email }}
-    </td>
-    <td class="px-4 py-3 hidden md:table-cell break-words max-w-[140px]">
-        {{ $participant->phone }}
-    </td>
-    <td class="px-4 py-3 hidden lg:table-cell">
+        {{ $participant->name }} -
         <span class="inline-block px-2 py-1 rounded-full text-xs font-semibold text-white
                         {{ 
                             $participant->shirt_size === 'XS' ? 'bg-pink-400' :
@@ -24,10 +12,38 @@
             {{ $participant->shirt_size }}
         </span>
     </td>
+    <td class="px-4 py-3 sm:table-cell break-words max-w-[180px]">
+        {{ $participant->companion->name ?? 'N/A' }}
+        @if ($participant->companion && $participant->companion->shirt_size)
+        - 
+        <span class="inline-block px-2 py-1 rounded-full text-xs font-semibold text-white
+                        {{ 
+                            $participant->companion->shirt_size === 'XS' ? 'bg-pink-400' :
+                            ($participant->companion->shirt_size === 'S' ? 'bg-yellow-400' :
+                            ($participant->companion->shirt_size === 'M' ? 'bg-green-400' :
+                            ($participant->companion->shirt_size === 'L' ? 'bg-blue-500' : 'bg-purple-500')))
+                        }}">
+            {{ $participant->companion->shirt_size }}
+        </span>
+        @endif
+    </td>
+    <td class="px-4 py-3 sm:table-cell uppercase">{{ $participant->participant_type ?? 'N/A' }}</td>
+    <td class="px-4 py-3 hidden sm:table-cell">{{ $participant->age }}</td>
+    <td class="px-4 py-3 hidden sm:table-cell">{{ $participant->sex }}</td>
+    <td class="px-4 py-3 hidden md:table-cell break-words max-w-[180px]">
+        {{ $participant->email }}
+    </td>
+    <td class="px-4 py-3 hidden md:table-cell break-words max-w-[140px]">
+        {{ $participant->phone }}
+    </td>
+    <td class="px-4 py-3 hidden md:table-cell break-words max-w-[140px]">
+        {{ $participant->organization ?? 'N/A' }}
+    </td>
     <td class="px-4 py-3 hidden md:table-cell">
         <span
             class="inline-block px-2 py-1 rounded-full text-xs font-semibold text-white {{ $participant->clockIn ? 'bg-green-400' : 'bg-red-400' }}">
-            {{ $participant->clockIn ? 'Scanned' : 'Not Scanned' }}
+            {{ $participant->clockIn ? 'Scanned - ' : 'Not Scanned' }}
+            {{ $participant->clockIn->scannedBy->name ?? '' }}
         </span>
     </td>
 </tr>

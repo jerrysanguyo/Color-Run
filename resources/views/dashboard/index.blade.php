@@ -63,7 +63,7 @@
                     <th class="px-4 py-3 hidden sm:table-cell">Sex</th>
                     <th class="px-4 py-3 hidden md:table-cell">Email</th>
                     <th class="px-4 py-3 hidden md:table-cell">Phone</th>
-                    <th class="px-4 py-3 hidden lg:table-cell">Shirt Size</th>
+                    <th class="px-4 py-3 hidden md:table-cell">Organization</th>
                     <th class="px-4 py-3 hidden lg:table-cell">Status</th>
                 </tr>
             </thead>

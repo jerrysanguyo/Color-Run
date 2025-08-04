@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId('participant_id')->constrained('participants')->cascadeOnDelete();
             $table->string('name');
+            $table->enum('shirt_size', ['XS', 'S', 'M', 'L', 'XL', 'XXL', 'XXXL']);
             $table->timestamps();
         });
     }

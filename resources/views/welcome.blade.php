@@ -84,7 +84,7 @@
                 <li>Matulog at kumain nang sapat bago ang araw ng aktibidad.</li>
                 <li>Magdala ng towel, tubig at pamalit na t-shirt.</li>
                 <li>Pumunta nang maaga para sa registration at paghahanda bago ang aktibidad.</li>
-                <li>Magmas na rin gamit ang tamang lakad at kalmadong kilos.</li>
+                <li>Magsama ng isang tao lamang kada kalahok.</li>
                 <li>Sumunod sa mga organizer, security at safety staff para sa ating seguridad.</li>
                 <li>Lumapit sa mga First Aid Station para sa mga pangangailangang medikal.</li>
                 <li>Uminom ng tubig sa mga water drinking stations kung nangangailangan.</li>

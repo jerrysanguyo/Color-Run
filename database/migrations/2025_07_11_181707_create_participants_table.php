@@ -19,6 +19,7 @@ return new class extends Migration
             $table->string('phone')->unique();
             $table->enum('shirt_size', ['XS', 'S', 'M', 'L', 'XL', 'XXL', 'XXXL']);
             $table->enum('kilometer', ['1km', '2km']);
+            $table->string('organization')->nullable();
             $table->timestamps();
         });
     }

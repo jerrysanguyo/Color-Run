@@ -137,15 +137,60 @@ $oldType = old('participant_type');
                         @enderror
                     </div>
 
-                    <div x-show="type === 'PWD'" x-transition>
-                        <label class="block mb-1 text-xs font-medium text-gray-700">Companion Name</label>
-                        <input type="text" name="companion_name" value="{{ old('companion_name') }}"
-                            class="w-full px-3 py-2 text-sm border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400 {{ $errors->has('companion_name') ? 'border-red-500' : '' }}">
-
-                        <p class="text-xs text-red-600 mt-1">Kindly leave this blank if you don't have companion.</p>
-                        @error('companion_name')
+                    <div x-show="type === 'Advocate'" x-transition>
+                        <label class="block mb-1 text-xs font-medium text-gray-700">Organization</label>
+                        <input type="text" name="organization" value="{{ old('organization') }}"
+                            class="w-full px-3 py-2 text-sm border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400 {{ $errors->has('organization') ? 'border-red-500' : '' }}">
+                        <p class="text-xs text-red-600 mt-1">Kindly leave this blank if you don't have organization.</p>
+                        @error('organization')
                         <p class="text-xs text-red-600 mt-1">{{ $message }}</p>
                         @enderror
+                    </div>
+
+                    <div x-show="type === 'PWD'" x-transition>
+                        <div x-data="{ hasCompanion: {{ old('has_companion') ? 'true' : 'false' }} }">
+                            <label class="inline-flex items-center space-x-2 mb-3">
+                                <input type="checkbox" x-model="hasCompanion" class="form-checkbox text-blue-600">
+                                <span class="text-sm text-gray-700 font-medium">I have a companion</span>
+                            </label>
+
+                            <input type="hidden" name="has_companion" :value="hasCompanion ? 1 : 0">
+
+                            <div x-show="hasCompanion" x-transition>
+                                <label class="block mb-1 text-xs font-medium text-gray-700">Companion Name</label>
+                                <input type="text" name="companion_name" value="{{ old('companion_name') }}"
+                                    class="w-full px-3 py-2 text-sm border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400 {{ $errors->has('companion_name') ? 'border-red-500' : '' }}">
+                                </p>
+                                @error('companion_name')
+                                <p class="text-xs text-red-600 mt-1">{{ $message }}</p>
+                                @enderror
+                            </div>
+
+                            <div x-show="hasCompanion" x-transition class="mt-4">
+                                <label class="block mb-1 text-xs font-medium text-gray-700">Companion T-Shirt
+                                    Size</label>
+                                <select name="companion_tshirt_size"
+                                    class="w-full px-3 py-2 text-sm border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400">
+                                    <option value="">Select size</option>
+                                    <option value="XS" {{ old('companion_tshirt_size') == 'XS' ? 'selected' : '' }}>Extra Small
+                                    </option>
+                                    <option value="S" {{ old('companion_tshirt_size') == 'S' ? 'selected' : '' }}>Small</option>
+                                    <option value="M" {{ old('companion_tshirt_size') == 'M' ? 'selected' : '' }}>Medium</option>
+                                    <option value="L" {{ old('companion_tshirt_size') == 'L' ? 'selected' : '' }}>Large</option>
+                                    <option value="XL" {{ old('companion_tshirt_size') == 'XL' ? 'selected' : '' }}>Extra Large
+                                    </option>
+                                    <option value="XXL" {{ old('companion_tshirt_size') == 'XXL' ? 'selected' : '' }}>Double Extra
+                                        Large
+                                    </option>
+                                    <option value="XXXL" {{ old('companion_tshirt_size') == 'XXXL' ? 'selected' : '' }}>Triple
+                                        Extra Large
+                                    </option>
+                                </select>
+                                @error('companion_tshirt_size')
+                                <p class="text-xs text-red-600 mt-1">{{ $message }}</p>
+                                @enderror
+                            </div>
+                        </div>
                     </div>
 
                     <div x-data="{ showConsentModal: false }">
@@ -153,7 +198,7 @@ $oldType = old('participant_type');
                             class="w-full py-2.5 bg-blue-600 text-white text-sm font-semibold rounded-md transition duration-200 hover:scale-[1.01] hover:bg-pink-700">
                             Submit Registration
                         </button>
-                        @include('Participants.partial.consent')
+                        @include('participants.partial.consent')
                         @include('components.loading')
                     </div>
                 </form>

@@ -27,6 +27,7 @@ class ParticipantServices
             'phone' => $data['phone'],
             'shirt_size' => $data['shirt_size'],
             'kilometer' => $data['kilometer'],
+            'organization' => $data['organization'] ?? null,
         ]);
 
         if ($participant) {
@@ -36,6 +37,7 @@ class ParticipantServices
                 Companion::create([
                     'participant_id' => $participant->id,
                     'name' => $data['companion_name'],
+                    'shirt_size' => $data['companion_tshirt_size'],
                 ]);
             }
         }

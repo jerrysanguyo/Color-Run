@@ -11,7 +11,8 @@ class Companion extends Model
     protected $table = 'companions';
     protected $fillable = [
         'participant_id',
-        'name'
+        'name',
+        'shirt_size',
     ];
 
     public function participant()

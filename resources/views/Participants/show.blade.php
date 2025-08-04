@@ -36,10 +36,19 @@
                     <span class="font-semibold">Kilometer:</span> {{ $participant->kilometer }}
                 </p>
 
+                <p>
+                    <i class="fas fa-shirt text-pink-600 mr-1"></i>
+                    <span class="font-semibold">Shirt size:</span> {{ $participant->shirt_size }}
+                </p>
+
                 @if ($participant->companion && $participant->companion->name)
                 <p>
                     <i class="fas fa-user-friends text-pink-600 mr-1"></i>
                     <span class="font-semibold">Companion Name:</span> {{ $participant->companion->name }}
+                </p>
+                <p>
+                    <i class="fas fa-shirt text-pink-600 mr-1"></i>
+                    <span class="font-semibold">Companion Shirt size:</span> {{ $participant->companion->shirt_size }}
                 </p>
                 @endif
 
